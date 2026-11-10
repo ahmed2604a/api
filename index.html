@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <div class="cards">
+                   
+     </div>
+
+    <script>
+        async   function getdata(){
+            var res = await   fetch('https://dummyjson.com/products?limit=60');
+
+            var data = await res.json();
+
+            console.log(res);
+            console.log(data);
+
+
+
+            showContent = ''
+            data.products.forEach(function(val){
+                showContent += `
+                <section class="card" style="max-width: 320px">
+                <img src="${val.thumbnail}" height="100px" width="100px" class="card-img-top img-fluid" alt="..."
+                <div class="card-body">
+                  <h4 class="card-title">${val.title}</h4>
+                  <p class="card-text">${val.description}</p>
+                  <p class="card-text">${val.price} years old</p>
+                  </div>
+                  </section>
+                  `
+                 })
+
+                 document.querySelector('.cards').innerHTML = showContent
+        }
+
+
+        getdata()
+    </script>
+</body>
+</html>
